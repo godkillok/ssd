@@ -37,7 +37,7 @@ def ssd_bboxes_decode(feat_localizations,
     xref = np.reshape(xref, [-1, 1])
     yref = np.reshape(yref, [-1, 1])
 
-    # Compute center, height and width
+    # Compute center, height and width  cx=pw*dx+px w=pw*exp(dw) other word the feat_localizations is dx in the paper
     cx = feat_localizations[:, :, 0] * wref * prior_scaling[0] + xref
     cy = feat_localizations[:, :, 1] * href * prior_scaling[1] + yref
     w = wref * np.exp(feat_localizations[:, :, 2] * prior_scaling[2])
