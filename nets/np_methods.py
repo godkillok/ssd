@@ -229,6 +229,8 @@ def bboxes_intersection(bboxes_ref, bboxes2):
 def bboxes_nms(classes, scores, bboxes, nms_threshold=0.45):
     """Apply non-maximum selection to bounding boxes.
     """
+    #整个的迭代过程主要是依次搞定每个anchner，每次主要比较当前的i，与i+1到最后个ahchner的重叠面积，
+    # （如果与i重叠小或与i不是同一类别）且上一轮计算还能保留下来的，那么这一轮就接着保留下来
     keep_bboxes = np.ones(scores.shape, dtype=np.bool)
     for i in range(scores.size-1):
         if keep_bboxes[i]:
